@@ -6,7 +6,7 @@
 /*   By: joaolive <joaolive@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 14:45:03 by joaolive          #+#    #+#             */
-/*   Updated: 2025/06/19 14:58:31 by joaolive         ###   ########.fr       */
+/*   Updated: 2026/05/30 17:55:28 by joaolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_isascii(int c)
 {
-	return (c >= 0 && c <= 127);
+	return ((unsigned int)c <= 127);
 }
