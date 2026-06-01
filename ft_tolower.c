@@ -6,7 +6,7 @@
 /*   By: joaolive <joaolive@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 15:57:53 by joaolive          #+#    #+#             */
-/*   Updated: 2025/07/22 10:09:30 by joaolive         ###   ########.fr       */
+/*   Updated: 2026/05/30 16:55:40 by joaolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 int	ft_tolower(int c)
 {
-	if (c >= 65 && c <= 90)
-		return (c + 32);
-	return (c);
+	return (c ^ (32 & -(c >= 65 && c <= 90)));
 }
