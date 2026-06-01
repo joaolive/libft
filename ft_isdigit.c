@@ -6,7 +6,7 @@
 /*   By: joaolive <joaolive@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:34:45 by joaolive          #+#    #+#             */
-/*   Updated: 2025/07/15 14:59:11 by joaolive         ###   ########.fr       */
+/*   Updated: 2026/05/30 17:50:41 by joaolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_isdigit(int c)
 {
-	return (c >= '0' && c <= '9');
+	return ((unsigned int)c - '0' <= 9);
 }
