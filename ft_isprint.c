@@ -6,7 +6,7 @@
 /*   By: joaolive <joaolive@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 14:56:27 by joaolive          #+#    #+#             */
-/*   Updated: 2025/07/21 14:26:30 by joaolive         ###   ########.fr       */
+/*   Updated: 2026/05/30 17:58:26 by joaolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_isprint(int c)
 {
-	return (c >= 32 && c <= 126);
+	return ((unsigned int)c - 32 <= 94);
 }
