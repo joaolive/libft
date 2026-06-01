@@ -6,7 +6,7 @@
 /*   By: joaolive <joaolive@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:45:05 by joaolive          #+#    #+#             */
-/*   Updated: 2025/06/16 17:48:40 by joaolive         ###   ########.fr       */
+/*   Updated: 2026/05/30 17:50:07 by joaolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 int	ft_isalnum(int c)
 {
-	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
-		|| (c >= '0' && c <= '9'));
+	return (((unsigned int)(c | 32) - 'a' <= 25) | ((unsigned int)c - '0' <= 9));
 }
