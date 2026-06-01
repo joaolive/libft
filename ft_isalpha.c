@@ -6,7 +6,7 @@
 /*   By: joaolive <joaolive@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 16:58:30 by joaolive          #+#    #+#             */
-/*   Updated: 2025/06/16 17:25:39 by joaolive         ###   ########.fr       */
+/*   Updated: 2026/05/30 17:03:39 by joaolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_isalpha(int c)
 {
-	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+	return ((unsigned int)(c | 32) - 'a' <= 25);
 }
