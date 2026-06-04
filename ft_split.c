@@ -6,13 +6,13 @@
 /*   By: joaolive <joaolive@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:12:13 by joaolive          #+#    #+#             */
-/*   Updated: 2025/08/07 11:43:09 by joaolive         ###   ########.fr       */
+/*   Updated: 2026/06/04 13:42:18 by joaolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_free_arr(char **arr)
+static void	*ft_free_arr(char **arr)
 {
 	size_t	i;
 
@@ -20,48 +20,41 @@ static void	ft_free_arr(char **arr)
 	while (arr[i])
 		free(arr[i++]);
 	free(arr);
+	return (NULL);
 }
 
-static int	ft_count_words(char const *s, char c)
+static size_t	ft_count_words(char const *s, char c)
 {
-	int	is_new_word;
-	int	count_words;
-	int	i;
+	size_t	count;
 
-	is_new_word = 1;
-	count_words = 0;
-	i = 0;
-	while (s[i])
+	count = 0;
+	while (*s)
 	{
-		if (s[i] == c)
-			is_new_word = 1;
-		if (s[i] != c && is_new_word)
-		{
-			is_new_word = 0;
-			count_words++;
-		}
-		i++;
+		while (*s == c)
+			s++;
+		if (*s)
+			count++;
+		while (*s && *s != c)
+			s++;
 	}
-	return (count_words);
+	return (count);
 }
 
 static char	*ft_get_next_word(const char **s_aux, char c)
 {
-	const char	*word_start;
-	char		*word;
-	size_t		len;
+	const char	*start;
+	const char	*end;
 
 	while (**s_aux && **s_aux == c)
 		(*s_aux)++;
-	word_start = *s_aux;
-	len = 0;
-	while ((*s_aux)[len] && (*s_aux)[len] != c)
-		len++;
-	if (len == 0)
+	start = *s_aux;
+	end = start;
+	while (*end && *end != c)
+		end++;
+	if (start == end)
 		return (NULL);
-	word = ft_substr(word_start, 0, len);
-	*s_aux += len;
-	return (word);
+	*s_aux = end;
+	return (ft_substr(start, 0, end - start));
 }
 
 char	**ft_split(char const *s, char c)
@@ -83,10 +76,7 @@ char	**ft_split(char const *s, char c)
 	{
 		arr[i] = ft_get_next_word(&s_aux, c);
 		if (!arr[i])
-		{
-			ft_free_arr(arr);
-			return (NULL);
-		}
+			return (ft_free_arr(arr));
 		i++;
 	}
 	arr[i] = NULL;
