@@ -6,7 +6,7 @@
 /*   By: joaolive <joaolive@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 16:08:02 by joaolive          #+#    #+#             */
-/*   Updated: 2025/07/22 10:08:56 by joaolive         ###   ########.fr       */
+/*   Updated: 2026/06/04 14:12:28 by joaolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,26 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	const char		*str;
-	unsigned char	cc;
+	const unsigned char	*p;
+	size_t				x;
+	size_t				mask;
+	size_t				lo;
 
-	if (!s)
-		return (NULL);
-	str = s;
-	cc = (unsigned char) c;
-	while (*str)
+	p = (const unsigned char *)s;
+	while (((size_t)p & (sizeof(size_t) - 1)) && *p && *p != (unsigned char)c)
+		p++;
+	lo = (size_t)-1 / 0xFF;
+	mask = lo * (unsigned char)c;
+	while (1)
 	{
-		if (*str == cc)
-			return ((char *) str);
-		str++;
+		x = *(const size_t *)p;
+		if ((((x - lo) & ~x) | (((x ^ mask) - lo) & ~(x ^ mask))) & (lo << 7))
+			break ;
+		p += sizeof(size_t);
 	}
-	if (*str == cc)
-		return ((char *) str);
+	while (*p && *p != (unsigned char)c)
+		p++;
+	if (*p == (unsigned char)c)
+		return ((char *)p);
 	return (NULL);
 }
