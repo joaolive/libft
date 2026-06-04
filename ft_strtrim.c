@@ -6,7 +6,7 @@
 /*   By: joaolive <joaolive@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 19:14:14 by joaolive          #+#    #+#             */
-/*   Updated: 2025/07/23 09:32:52 by joaolive         ###   ########.fr       */
+/*   Updated: 2026/06/04 13:14:14 by joaolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!s1 || !set)
 		return (NULL);
 	start = 0;
-	end = ft_strlen(s1);
-	while (ft_strchr(set, s1[start]))
+	while (s1[start] && ft_strchr(set, s1[start]))
 		start++;
+	end = ft_strlen(s1);
 	while ((end > start) && ft_strchr(set, s1[end - 1]))
 		end--;
 	s = ft_substr(s1, start, (end - start));
-	if (!s)
-		return (NULL);
 	return (s);
 }
