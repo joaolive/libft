@@ -6,7 +6,7 @@
 #    By: joaolive <joaolive@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/31 15:23:30 by joaolive          #+#    #+#              #
-#    Updated: 2025/07/21 14:08:27 by joaolive         ###   ########.fr        #
+#    Updated: 2026/06/04 15:06:53 by joaolive         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,11 +44,7 @@ SRC = $(addsuffix .c, \
 	ft_putchar_fd \
 	ft_putstr_fd \
 	ft_putendl_fd \
-	ft_putnbr_fd)
-
-OBJS := $(SRC:%.c=%.o)
-
-BONUS_SRC = $(addsuffix _bonus.c, \
+	ft_putnbr_fd \
 	ft_lstnew \
 	ft_lstadd_front \
 	ft_lstsize \
@@ -59,7 +55,7 @@ BONUS_SRC = $(addsuffix _bonus.c, \
 	ft_lstiter \
 	ft_lstmap)
 
-BONUS_OBJS := $(BONUS_SRC:%.c=%.o)
+OBJS := $(SRC:%.c=%.o)
 
 NAME = libft.a
 
@@ -83,14 +79,11 @@ $(NAME) : $(OBJS)
 	$(ARNAME) $(OBJS)
 	$(RANNAME)
 
-bonus:
-	@$(MAKE) --no-print-directory OBJS="$(OBJS) $(BONUS_OBJS)"
-
 %.o : %.c
 	$(CC) $(CPPFLAGS) $(CCFLAGS) -o $@ -c $<
 
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
