@@ -6,7 +6,7 @@
 /*   By: joaolive <joaolive@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 17:47:31 by joaolive          #+#    #+#             */
-/*   Updated: 2026/05/30 22:53:04 by joaolive         ###   ########.fr       */
+/*   Updated: 2026/06/04 00:27:47 by joaolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*ft_memset(void *s, int c, size_t n)
 		*byte_ptr++ = (unsigned char)c;
 		n--;
 	}
-	broadcast = ~(size_t)0 / 0xFF;
+	broadcast = ~(size_t)0 / 0xFF * (unsigned char)c;
 	word_ptr = (size_t *)byte_ptr;
 	while (n >= sizeof(size_t) && (n -= sizeof(size_t), 1))
 		*word_ptr++ = broadcast;
