@@ -6,7 +6,7 @@
 /*   By: joaolive <joaolive@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 17:37:01 by joaolive          #+#    #+#             */
-/*   Updated: 2025/07/21 12:11:36 by joaolive         ###   ########.fr       */
+/*   Updated: 2026/06/04 12:32:21 by joaolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	src_len = ft_strlen(src);
 	if (dstsize == 0)
 		return (src_len);
-	while (*src && dstsize - 1 > 0)
+	while (*src && dstsize - 1)
 	{
 		*dst++ = *src++;
 		dstsize--;
