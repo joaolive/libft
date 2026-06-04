@@ -6,7 +6,7 @@
 /*   By: joaolive <joaolive@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:26:29 by joaolive          #+#    #+#             */
-/*   Updated: 2025/08/07 11:38:11 by joaolive         ###   ########.fr       */
+/*   Updated: 2026/06/04 02:27:59 by joaolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,27 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	const unsigned char	*str1;
-	const unsigned char	*str2;
+	const unsigned char	*p1;
+	const unsigned char	*p2;
 
-	str1 = (const unsigned char *) s1;
-	str2 = (const unsigned char *) s2;
-	while (n--)
+	p1 = (const unsigned char *) s1;
+	p2 = (const unsigned char *) s2;
+	if (((size_t)p1 == (size_t)p2) | (n == 0))
+			return (0);
+	if (((size_t)p1 & (sizeof(size_t) - 1)) == ((size_t)p2 & (sizeof(size_t) - 1)))
 	{
-		if (*str1 != *str2)
-			return (*str1 - *str2);
-		str1++;
-		str2++;
+		while (n && ((size_t)p1 & (sizeof(size_t) - 1)) != 0 && n--)
+			if (*p1++ != *p2++)
+				return (p1[-1] - p2[-1]);
+		while (n >= sizeof(size_t) && *(const size_t *)p1 == *(const size_t *)p2)
+		{
+			p1 += sizeof(size_t);
+			p2 += sizeof(size_t);
+			n -= sizeof(size_t);
+		}
 	}
+	while (n--)
+		if (*p1++ != *p2++)
+			return (p1[-1] - p2[-1]);
 	return (0);
 }
